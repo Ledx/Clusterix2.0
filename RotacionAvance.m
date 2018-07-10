@@ -8,6 +8,7 @@ function robots = RotacionAvance(robots,ROTACION,N,W,A,ALFA)
         thethaProm=dot(W,thetha)/N;
         %thethaT = gaussiana(thethaProm,sigmaThetha);
         robots(i).thetha=thethaProm;
+        
     end
 end
 

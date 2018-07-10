@@ -28,15 +28,17 @@ cr=1;
 
 figure(1)
 axis([0 L 0 L]);
-
-while cr<REPETICIONES
-    while ci<ITERACIONES
-        for i=1:N
-            hold on;
-            plot(robots(i).posicion(1),robots(i).posicion(2),'*');
-        end
-        robots=RotacionAvance(robots,ROTACION,N,W,A,ALFA);
-        ci=ci+1;
-    end
-    cr=cr+1;
+for i=1:N
+    x=[10,10]
+    hold on;
+    plot(x,'*');
 end
+% while cr<REPETICIONES
+%     while ci<ITERACIONES
+%         hold on;
+%         plot(robots(1).posicion,'*');
+%         robots=RotacionAvance(robots,ROTACION,N,W,A,ALFA);
+%         ci=ci+1;
+%     end
+%     cr=cr+1;
+% end
