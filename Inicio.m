@@ -18,25 +18,27 @@ close all;
 
 %Carga de parametros iniciales
 [REPETICIONES,ITERACIONES,L,N,A,ALFA,R,PASO,ROTACION,W]=CargaParametros();
-
-%Inicializacion
-robots= Inicializacion(N,L,R,A);
-
+colores = ['c*';'m*';'y*';'r*';'g*';'b*';'y+';'k*';'c+'];
 %Simulacion
 ci=1;
 cr=1;
 
-figure(1)
-axis([0 L 0 L]);
-
 while cr<REPETICIONES
+    robots= Inicializacion(N,L,R,A);
+    figure(1)
+    axis([0 L 0 L]);
+    grid
     while ci<ITERACIONES
         for i=1:N
-            hold on;
-            plot(robots(i).posicion(1),robots(i).posicion(2),'*');
+            hold on
+            plot(robots(i).posicion(1),robots(i).posicion(2),colores(i,:));
+            drawnow;
+            pause(0.0001)
         end
-        robots=RotacionAvance(robots,ROTACION,N,W,A,ALFA);
+        robots=RotacionAvance(robots,ROTACION,N,W,ALFA,PASO);
         ci=ci+1;
     end
     cr=cr+1;
+    ci=1;
+    clf(figure(1));
 end

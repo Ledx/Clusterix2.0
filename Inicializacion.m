@@ -3,7 +3,7 @@ function robots = Inicializacion(N,L,R,A)
 
     for i=1:N
         
-        robot.thetha = 0 + (360-0)*rand(1,1);
+        robot.thetha = 0 + ((2*pi)-0)*rand(1,1);
         robot.radio = R;
         robot.A = A(i);
         robot.posicion = 0 + (L-0)*rand(1,2);
