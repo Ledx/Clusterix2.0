@@ -25,7 +25,7 @@ cr=1;
 
 while cr<REPETICIONES
     robots= Inicializacion(N,L,R,A);
-    figure(1)
+    figure(cr)
     axis([0 L 0 L]);
     grid
     while ci<ITERACIONES
@@ -33,12 +33,12 @@ while cr<REPETICIONES
             hold on
             plot(robots(i).posicion(1),robots(i).posicion(2),colores(i,:));
             drawnow;
-            pause(0.0001)
         end
         robots=RotacionAvance(robots,ROTACION,N,W,ALFA,PASO);
         ci=ci+1;
     end
+    %clf(figure(cr));
+    hold off
     cr=cr+1;
     ci=1;
-    clf(figure(1));
 end

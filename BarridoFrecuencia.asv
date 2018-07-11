@@ -12,7 +12,7 @@ function thetha = BarridoFrecuencia(i,j,robots,ROTACION,ALFA,N)
         for c=1:N
             if i ~= c && robots(c).clase >= j
                 %a(k)= LobuloCos(abs((robots(i).thetha+giro)-robots(c).thetha));
-                a(k) = LobuloCos(abs(AnguloDosRectas(robots(i).posicion,robots(c).posicion)+robots(i).thetha+giro));
+                a(k) = LobuloCos(
                 phi(k) = Potencial(robots(i).posicion,robots(c).posicion,robots(c).A,ALFA);
                 k=k+1;
             end

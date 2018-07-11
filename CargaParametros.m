@@ -6,7 +6,7 @@ function [REPETICIONES,ITERACIONES,L,N,A,ALFA,R,PASO,ROTACION,W,SIGMATHETHA]= Ca
     %Para escribir el archivo de parametros,descomentar el siguiente codigo
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   REPETICIONES= 10;
-%   ITERACIONES = 1000;
+%   ITERACIONES = 100;
 %   L = 300;
 %   N = 9;
 %   A = ones(1,9);
