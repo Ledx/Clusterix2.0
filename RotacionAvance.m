@@ -8,8 +8,10 @@ function robots = RotacionAvance(robots,ROTACION,N,W,ALFA,PASO)
         thethaProm=dot(W,thetha)/N;
         %thethaT = gaussiana(thethaProm,sigmaThetha);
         robots(i).thetha=robots(i).thetha+thethaProm;
-        robots(i).posicion(1) = robots(i).posicion(1)+PASO * cos(robots(i).thetha);
-        robots(i).posicion(2) = robots(i).posicion(2)+PASO * sin(robots(i).thetha);
+        if robots(i).clustered == 0
+            robots(i).posicion(1) = robots(i).posicion(1)+PASO * cos(robots(i).thetha);
+            robots(i).posicion(2) = robots(i).posicion(2)+PASO * sin(robots(i).thetha);
+        end
     end
 end
 
