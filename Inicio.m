@@ -17,7 +17,7 @@ clear all;
 close all;
 
 %Carga de parametros iniciales
-[REPETICIONES,ITERACIONES,L,N,A,ALFA,R,PASO,ROTACION,W,SIGMATHETHA,R_COLISION]=CargaParametros();
+[REPETICIONES,ITERACIONES,L,N,A,ALFA,R,PASO,DELTA_ROTACION,W,SIGMATHETHA,R_COLISION]=CargaParametros();
 colores = ['c*';'m*';'y*';'m+';'g*';'b*';'y+';'r*';'c+'];
 %Simulacion
 ci=1;
@@ -56,7 +56,7 @@ while cr<REPETICIONES
             end
         end
         
-        robots=RotacionAvance(robots,ROTACION,N,W,ALFA,PASO);
+        robots=RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA,PASO);
         ci=ci+1;
     end
     for i=1:N

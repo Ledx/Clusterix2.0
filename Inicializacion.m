@@ -5,7 +5,7 @@ function robots = Inicializacion(N,L,R,A)
         
         robot.thetha = 0 + ((2*pi)-0)*rand(1,1);
         robot.radio = R;
-        robot.A = A(i);
+        robot.A = A(1) + (A(2)-A(1))*rand(1,1);
         robot.posicionRect = 0 + (L-0)*rand(1,2);
         robot.posicionPol.radioPol = sqrt( (robot.posicionRect(1)^2)+(robot.posicionRect(2)^2) );
         robot.posicionPol.anguloPol = atan2(robot.posicionRect(2),robot.posicionRect(1)); 
