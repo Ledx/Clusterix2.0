@@ -29,30 +29,40 @@ while cr<REPETICIONES
     axis([0 L 0 L]);
     grid
     while ci<ITERACIONES
+        %Revision de colisiones entre robots
         for h=1:N
             for l=1:N
-                if h ~= l && Clustered(robots(h).posicion,robots(l).posicion,R_COLISION) > 0
+                if h ~= l && Clustered(robots(h).posicionRect,robots(l).posicionRect,R_COLISION) > 0
                     robots(h).clustered = 1;
                     robots(l).clustered = 1;
+                    [x,y]=GeneradorCircunferencia(robots(h).posicionRect,robots(l).posicionRect);
+                    hold on
+                    plot(x,y,'k');
+                    drawnow;
                 end
             end
         end
         if ci > 1
             for i=1:N
                 hold on
-                plot(robots(i).posicion(1),robots(i).posicion(2),colores(i,:));
+                plot(robots(i).posicionRect(1),robots(i).posicionRect(2),colores(i,:));
                 drawnow;
             end
         else
             for i=1:N
                 hold on
-                plot(robots(i).posicion(1),robots(i).posicion(2),'ko');
+                plot(robots(i).posicionRect(1),robots(i).posicionRect(2),'ko');
                 drawnow;
             end
         end
         
         robots=RotacionAvance(robots,ROTACION,N,W,ALFA,PASO);
         ci=ci+1;
+    end
+    for i=1:N
+        hold on
+        plot(robots(i).posicionRect(1),robots(i).posicionRect(2),'k*');
+        drawnow;
     end
     hold off
     cr=cr+1;
