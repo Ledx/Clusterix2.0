@@ -14,21 +14,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all;
+clc;
 close all;
 
 %Carga de parametros iniciales
-[REPETICIONES,ITERACIONES,L,N,A,ALFA,R,PASO,DELTA_ROTACION,W,SIGMATHETHA,R_COLISION]=CargaParametros();
+[REPETICIONES,ITERACIONES,L,N,A_POTENCIAL,ALFA_POTENCIAL,R,LONG_AVANCE,DELTA_ROTACION,W,SIGMA_THETHA,R_COLISION]=CargaParametros();
 colores = ['c*';'m*';'y*';'m+';'g*';'b*';'y+';'r*';'c+'];
 %Simulacion
 ci=1;
 cr=1;
-
-while cr<REPETICIONES
-    robots= Inicializacion(N,L,R,A);
+tic
+while cr<REPETICIONES + 1
+    robots= Inicializacion(N,L,R,A_POTENCIAL);
     figure(cr)
     axis([0 L 0 L]);
     grid
-    while ci<ITERACIONES
+    while ci<ITERACIONES + 1
         %Revision de colisiones entre robots
         for h=1:N
             for l=1:N
@@ -55,8 +56,7 @@ while cr<REPETICIONES
                 drawnow;
             end
         end
-        
-        robots=RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA,PASO);
+        robots=RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,LONG_AVANCE);
         ci=ci+1;
     end
     for i=1:N
@@ -68,3 +68,4 @@ while cr<REPETICIONES
     cr=cr+1;
     ci=1;
 end
+toc

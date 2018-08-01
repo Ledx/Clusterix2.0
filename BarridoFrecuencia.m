@@ -1,4 +1,4 @@
-function thetha = BarridoFrecuencia(i,j,robots,DELTA_ROTACION,ALFA,N)
+function thetha = BarridoFrecuencia(i,j,robots,DELTA_ROTACION,ALFA_POTENCIAL,N)
 %Funcion que realiza la rotacion y el calculo de un angulo en una
 %frecuencia
 
@@ -15,7 +15,7 @@ function thetha = BarridoFrecuencia(i,j,robots,DELTA_ROTACION,ALFA,N)
                 %eta(k)= LobuloCos(abs((-robots(i).thetha+giro)+Zeta(robots(i),robots(c))));
                 %a(k)= LobuloCos(abs((robots(i).thetha+giro)-robots(c).thetha));
                 %a(k) = LobuloCos(abs(AnguloDosRectas(robots(i).posicionRect,robots(c).posicionRect)+robots(i).thetha+giro));
-                phi(k) = Potencial(robots(i).posicionRect,robots(c).posicionRect,robots(c).A,ALFA);
+                phi(k) = Potencial(robots(i).posicionRect,robots(c).posicionRect,robots(c).constante_potencial,ALFA_POTENCIAL);
                 k=k+1;
             end
         end
