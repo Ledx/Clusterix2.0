@@ -1,0 +1,22 @@
+function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,DELTA_AVANCE)
+%Funcion que realiza una iteracion del simulador para todos los robots
+
+    for robot=1:N
+        tic
+        for frecuencia=1:N
+            thetha(frecuencia)=BarridoFrecuencia(robot,frecuencia,robots,DELTA_ROTACION,ALFA_POTENCIAL,N);
+        end
+        thethaProm=dot(W,thetha)/N;
+        %thethaT = gaussiana(thethaProm,sigmaThetha);
+        robots(robot).thetha=robots(robot).thetha+thethaProm;
+        if robots(robot).clustered == 0
+            robots(robot).posicionRect(1) = robots(robot).posicionRect(1)+DELTA_AVANCE * cos(robots(robot).thetha);
+            robots(robot).posicionRect(2) = robots(robot).posicionRect(2)+DELTA_AVANCE * sin(robots(robot).thetha);
+            robots(robot).posicionPol.radioPol = sqrt( (robots(robot).posicionRect(1)^2)+(robots(robot).posicionRect(2)^2) );
+            robots(robot).posicionPol.anguloPol = atan2(robots(robot).posicionRect(2),robots(robot).posicionRect(1)); 
+            robots(robot).pasos = robots(robot).pasos+1;
+        end
+        robots(robot).tiempo = robots(robot).tiempo + toc;
+    end
+end
+

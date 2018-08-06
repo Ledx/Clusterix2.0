@@ -4,7 +4,7 @@ function a=LobuloCos(thetha)
         thetha=thetha+(2*pi);
     end
     
-    if thetha>=0 && thetha<=(70*pi/180)
+    if thetha>=0 && thetha<=((70*pi)/180)
         a=cos(thetha)^3;
     else
         a=cos(3*thetha)/3;

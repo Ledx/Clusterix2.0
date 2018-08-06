@@ -1,22 +1,22 @@
-function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,LONG_AVANCE)
+function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,DELTA_AVANCE)
 %Funcion que realiza una iteracion del simulador para todos los robots
 
-    for i=1:N
+    for robot_actual=1:N
         tic
-        for j=1:N
-            thetha(j)=BarridoFrecuencia(i,j,robots,DELTA_ROTACION,ALFA_POTENCIAL,N);
+        for frecuencia=1:N
+            thetha(frecuencia)=BarridoFrecuencia(robot_actual,frecuencia,robots,DELTA_ROTACION,ALFA_POTENCIAL,N);
         end
         thethaProm=dot(W,thetha)/N;
         %thethaT = gaussiana(thethaProm,sigmaThetha);
-        robots(i).thetha=robots(i).thetha+thethaProm;
-        if robots(i).clustered == 0
-            robots(i).posicionRect(1) = robots(i).posicionRect(1)+LONG_AVANCE * cos(robots(i).thetha);
-            robots(i).posicionRect(2) = robots(i).posicionRect(2)+LONG_AVANCE * sin(robots(i).thetha);
-            robots(i).posicionPol.radioPol = sqrt( (robots(i).posicionRect(1)^2)+(robots(i).posicionRect(2)^2) );
-            robots(i).posicionPol.anguloPol = atan2(robots(i).posicionRect(2),robots(i).posicionRect(1)); 
-            robots(i).pasos = robots(i).pasos+1;
+        robots(robot_actual).thetha=robots(robot_actual).thetha+thethaProm;
+        if robots(robot_actual).clustered == 0
+            robots(robot_actual).posicionRect.x = robots(robot_actual).posicionRect.x+DELTA_AVANCE * cos(robots(robot_actual).thetha);
+            robots(robot_actual).posicionRect.y = robots(robot_actual).posicionRect.y+DELTA_AVANCE * sin(robots(robot_actual).thetha);
+            robots(robot_actual).posicionPol.radioPol = sqrt( (robots(robot_actual).posicionRect.x^2)+(robots(robot_actual).posicionRect.y^2) );
+            robots(robot_actual).posicionPol.anguloPol = atan2(robots(robot_actual).posicionRect.y,robots(robot_actual).posicionRect.x); 
+            robots(robot_actual).pasos = robots(robot_actual).pasos+1;
         end
-        robots(i).tiempo = robots(i).tiempo + toc;
+        robots(robot_actual).tiempo = robots(robot_actual).tiempo + toc;
     end
 end
 
