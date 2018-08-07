@@ -27,7 +27,7 @@ tic
 while cr<REPETICIONES + 1
     robots= Inicializacion(N,L,R,A_POTENCIAL);
     figure(cr)
-    axis([0 L 0 L]);
+    axis([-L 2*L -L 2*L]);
     grid
     while ci<ITERACIONES + 1
         %Revision de colisiones entre robots
@@ -35,7 +35,9 @@ while cr<REPETICIONES + 1
             for l=1:N
                 if h ~= l && Clustered([robots(h).posicionRect.x,robots(h).posicionRect.y],[robots(l).posicionRect.x,robots(l).posicionRect.y],R_COLISION) > 0
                     robots(h).clustered = 1;
+                    robots(h).clase = robots(h).clase + 1;
                     robots(l).clustered = 1;
+                    robots(l).clase = robots(l).clase + 1;
                     [x,y]=GeneradorCircunferencia([robots(h).posicionRect.x,robots(h).posicionRect.y],[robots(l).posicionRect.x,robots(l).posicionRect.y]);
                     hold on
                     plot(x,y,'k');

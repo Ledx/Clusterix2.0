@@ -9,7 +9,7 @@ function [REPETICIONES,ITERACIONES,L,N,A_POTENCIAL,ALFA_POTENCIAL,R,DELTA_AVANCE
     %codigo siguiente y descomente el de arriba.
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   REPETICIONES= 1;
-%   ITERACIONES = 100;
+%   ITERACIONES = 1000;
 %   L = 300;
 %   N = 2;
 %   A_POTENCIAL = [0.9990,1.0010];
