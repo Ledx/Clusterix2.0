@@ -1,5 +1,8 @@
 function a=LobuloCos(thetha)
 %Funcion que calcula la atenuación con la que un robot percibe a otro
+
+    format long
+    
     if thetha<0
         while thetha < 0
             thetha=thetha+(2*pi);
@@ -15,7 +18,8 @@ function a=LobuloCos(thetha)
     if thetha>=0 && thetha<=((70*pi)/180)
         a=cos(thetha)^3;
     else
-        a=abs(cos(3*thetha))/3;
+%         a=abs(cos(3*thetha))/3;
+            a=1e-5;
     end
- 
+    
 end
