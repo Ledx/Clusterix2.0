@@ -1,4 +1,4 @@
-function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,DELTA_AVANCE)
+function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,DELTA_AVANCE,SIGMA_ROTACION)
 %Funcion que realiza una iteracion del simulador para todos los robots
 
     format long
@@ -13,8 +13,10 @@ function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,DELTA_
         end
         thethaProm=dot(W,thetha)/N;
         %thethaT = gaussiana(thethaProm,sigmaThetha);
-        robots(robot_actual).thetha = thethaProm;
-        robots(robot_actual).thethaG = robots(robot_actual).thetha*(180/pi);
+        for giro=1:round(thethaProm)
+            robots(robot_actual).thetha = robots(robot_actual).thetha + normrnd((pi/180),SIGMA_ROTACION);
+            robots(robot_actual).thethaG = robots(robot_actual).thetha*(180/pi);
+        end
         if robots(robot_actual).clustered == 0
             robots(robot_actual).posicionRect.x = robots(robot_actual).posicionRect.x+DELTA_AVANCE * cos(robots(robot_actual).thetha);
             robots(robot_actual).posicionRect.y = robots(robot_actual).posicionRect.y+DELTA_AVANCE * sin(robots(robot_actual).thetha);
