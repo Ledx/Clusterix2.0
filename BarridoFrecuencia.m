@@ -1,4 +1,4 @@
-function thetha = BarridoFrecuencia(robot_referencia,frecuencia,robots,DELTA_ROTACION,ALFA_POTENCIAL,N)
+function thetha = BarridoFrecuencia(robot_referencia,frecuencia,robots,DELTA_ROTACION,ALFA_POTENCIAL,N,SIGMA_ROTACION)
 %Funcion que realiza la rotacion y el calculo de un angulo en una
 %frecuencia
     
@@ -29,7 +29,7 @@ function thetha = BarridoFrecuencia(robot_referencia,frecuencia,robots,DELTA_ROT
         end
         
         potencialDireccional = dot(eta,phi);
-        robots(robot_referencia).thetha = robots(robot_referencia).thetha + DELTA_ROTACION;
+        robots(robot_referencia).thetha = robots(robot_referencia).thetha + normrnd(DELTA_ROTACION,SIGMA_ROTACION);
         if robots(robot_referencia).thetha > (2*pi)
             while robots(robot_referencia).thetha > (2*pi)
                 robots(robot_referencia).thetha = robots(robot_referencia).thetha-(2*pi);
