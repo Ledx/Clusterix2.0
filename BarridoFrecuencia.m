@@ -21,14 +21,16 @@ function thetha = BarridoFrecuencia(robot_referencia,frecuencia,robots,DELTA_ROT
                 if alfa < 0
                     alfa = alfa + (2*pi);
                 end
-                alfa1 = abs(robots(robot_referencia).thetha-alfa);
-                eta(k)= Lobulo(alfa1);
+                alfa1 = abs(alfa-robots(robot_referencia).thetha);
+                eta(k)= LobuloCos(alfa1);
                 phi(k) = Potencial([robots(robot_referencia).posicionRect.x,robots(robot_referencia).posicionRect.y],[robots(robot_lejano).posicionRect.x,robots(robot_lejano).posicionRect.y],robots(robot_lejano).constante_potencial,ALFA_POTENCIAL);
                 k=k+1;
             end
         end
         
         potencialDireccional = dot(eta,phi);
+        compx = ( potencialDireccional*cos(robots(robot_referencia).thetha) )+compx;
+        compy = ( potencialDireccional*sin(robots(robot_referencia).thetha) )+compy;
         robots(robot_referencia).thetha = robots(robot_referencia).thetha + normrnd(DELTA_ROTACION,SIGMA_ROTACION);
         if robots(robot_referencia).thetha > (2*pi)
             while robots(robot_referencia).thetha > (2*pi)
@@ -36,8 +38,6 @@ function thetha = BarridoFrecuencia(robot_referencia,frecuencia,robots,DELTA_ROT
             end
         end
         robots(robot_referencia).thethaG = robots(robot_referencia).thetha * (180/pi);
-        compx = ( potencialDireccional*cos(robots(robot_referencia).thetha) )+compx;
-        compy = ( potencialDireccional*sin(robots(robot_referencia).thetha) )+compy;
         giro = giro + DELTA_ROTACION;
         
     end

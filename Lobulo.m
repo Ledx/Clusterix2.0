@@ -15,7 +15,7 @@ function a=Lobulo(thetha)
         end
     end
     
-    if (thetha>=0 && thetha<=((60*pi)/180) || (thetha>=(300*pi/180) && thetha<=((2*pi))))
+    if (thetha>=0 && thetha<=((60*pi)/180) || (thetha>=(300*pi/180) && thetha<((2*pi))))
         a=1;
     else
         a=0;

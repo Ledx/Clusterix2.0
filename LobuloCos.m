@@ -18,8 +18,8 @@ function a=LobuloCos(thetha)
     if thetha>=0 && thetha<=((70*pi)/180)
         a=cos(thetha)^3;
     else
-%         a=abs(cos(3*thetha))/3;
-            a=1e-5;
+        a=abs(cos(3*thetha))/3;
+
     end
     
 end
