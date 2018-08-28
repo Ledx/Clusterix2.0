@@ -37,7 +37,6 @@ function thetha = BarridoFrecuencia(robot_referencia,frecuencia,robots,DELTA_ROT
                 robots(robot_referencia).thetha = robots(robot_referencia).thetha-(2*pi);
             end
         end
-        robots(robot_referencia).thethaG = robots(robot_referencia).thetha * (180/pi);
         giro = giro + DELTA_ROTACION;
         
     end
