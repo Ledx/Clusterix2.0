@@ -15,7 +15,7 @@ function robots = RotacionAvance(robots,DELTA_ROTACION,N,W,ALFA_POTENCIAL,DELTA_
         robots(robot_actual).thetha = thethaProm;
         robots(robot_actual).thethaG = robots(robot_actual).thetha*(180/pi);
 
-        if robots(robot_actual).clustered == 0
+        if robots(robot_actual).clustered == 0 && robots(robot_actual).clase < 5
             robots(robot_actual).posicionRect.x = robots(robot_actual).posicionRect.x+DELTA_AVANCE * cos(robots(robot_actual).thetha);
             robots(robot_actual).posicionRect.y = robots(robot_actual).posicionRect.y+DELTA_AVANCE * sin(robots(robot_actual).thetha);
             robots(robot_actual).pasos = robots(robot_actual).pasos+1;

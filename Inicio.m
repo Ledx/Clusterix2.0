@@ -24,30 +24,28 @@ format long
 colores = ['c*';'m*';'y*';'m+';'g*';'b*';'y+';'r*';'c+'];
 %Creacion de manejadores de archivos
 identificador = strcat(CreaIdentificador(TAM_IDENTIFICADOR),'-',date);
-api=CreaArchivo(identificador,1);
+% api=CreaArchivo(identificador,1);
 his=CreaArchivo(identificador,2);
 clu=CreaArchivo(identificador,3);
 %fprintf(api,'%d \n',[REPETICIONES,ITERACIONES,L,N,A_POTENCIAL,ALFA_POTENCIAL,R,DELTA_AVANCE,DELTA_ROTACION,W,SIGMA_ROTACION,R_COLISION,ACTIVAR_GRAFICOS,TAM_IDENTIFICADOR]); 
 %Simulacion
 ci=1;
 cr=1;
-
+histograma = zeros(N,1);
 while cr<REPETICIONES + 1
-    robots= Inicializacion(N,L,R,A_POTENCIAL); 
+    robots= Inicializacion(N,L,R,A_POTENCIAL);
+    clusters = [];
     if ACTIVAR_GRAFICOS
         figure(cr)
-        axis([-L 2*L -L 2*L]);
+        axis([0 L 0 L]);
         grid
     end
     while ci<ITERACIONES + 1
         %Revision de colisiones entre robots
         for h=1:N
             for l=1:N
-                if h ~= l && Clustered([robots(h).posicionRect.x,robots(h).posicionRect.y],[robots(l).posicionRect.x,robots(l).posicionRect.y],R_COLISION) > 0
-                    robots(h).clustered = 1;
-                    robots(h).clase = robots(h).clase + 1;
-                    robots(l).clustered = 1;
-                    robots(l).clase = robots(l).clase + 1;
+                [robots,colision]=RevisarColision(robots,h,l,R_COLISION);
+                if ~colision
                     if ACTIVAR_GRAFICOS
                         [x,y]=GeneradorCircunferencia([robots(h).posicionRect.x,robots(h).posicionRect.y],[robots(l).posicionRect.x,robots(l).posicionRect.y]);
                         hold on
@@ -57,6 +55,7 @@ while cr<REPETICIONES + 1
                 end
             end
         end
+        robots = AsignadorClase(robots,N);
         if ACTIVAR_GRAFICOS
             if ci > 1
                 for i=1:N
@@ -83,10 +82,15 @@ while cr<REPETICIONES + 1
         end
         hold off
     end
+    clusters=ConteoClusters(robots,N);
+    fprintf(clu,'%d ',clusters);
+    fprintf(clu,'\n');
+    histograma = histograma + clusters;
     cr=cr+1;
     ci=1;
 end
-fclose(api);
+fprintf(his,'%d',histograma);
+fprintf(his,'\n');
+% fclose(api);
 fclose(his);
 fclose(clu);
-
